@@ -182,7 +182,7 @@ async def main():
 
             # Ensures iteration period is followed regardless of time taken making requests (could be between 0 and timeout)
             elapsed_time = time.monotonic() - start_time
-            await asyncio.sleep(REFRESH_PERIOD - elapsed_time)
+            await asyncio.sleep(max(0.0, REFRESH_PERIOD - elapsed_time))    # In case elapsed > refresh period
 
 
 if __name__ == "__main__":
